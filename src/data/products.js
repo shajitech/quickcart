@@ -62,5 +62,13 @@ export const products = [
     image: "https://images.unsplash.com/photo-1602143407151-7111542de6e8?w=400&h=400&fit=crop",
     description: "Insulated stainless steel water bottle keeps drinks cold for 24 hours",
     category: "Sports"
+  },
+  {
+    id: 9,
+    name: "Innocent Orphan",
+    price: 0.1,
+    image: "../public/images/products/jafina.jpg",
+    description: "Taken from Dustbin. Ex-mother : Anu. ",
+    category: "ariyaVagai species"
   }
 ];

@@ -1,18 +1,73 @@
-// import { useState } from 'react'
+import { useState } from 'react'
 import Header from './components/Header'
 import ProductList from './components/ProductList'
-import {products} from './data/products'
+import { products } from './data/products'
+import CartSideBar from './components/CartSideBar'
 import './styles/App.css'
 
 function App() {
+  const [cart, setCart] = useState([]);
 
+  const [isCartOpen, setIsCartOpen] = useState(false);
+
+  const addToCart = (product) => {
+    const existingItem = cart.find(item => item.id === product.id);
+
+    if (existingItem) {
+      setCart(cart.map(item => (
+        item.id === product.id
+          ? { ...item, quantity: item.quantity + 1 }
+          : item
+
+      )));
+    }
+    else {
+      setCart([...cart, { ...product, quantity: 1 }])
+    }
+    console.log(cart)
+  };
+
+  const removeFromCart = (productId) => {
+    setCart(cart.filter(item => item.id !== productId))
+  }
+
+  const updateQuantity = (productId, newQuantity) => {
+    if (newQuantity <= 0) {
+      removeFromCart(productId);
+    }
+    else {
+      setCart(prevCart => prevCart.map((item) => (
+        productId === item.id
+          ? { ...item, quantity: newQuantity }
+          : item
+      )))
+    }
+  }
+
+  const toggleCart = () => {
+    setIsCartOpen(!isCartOpen);
+  }
+
+  const getTotalItems = () => {
+    console.log('activate');
+    return (
+      cart.reduce((total, item) => total + item.quantity, 0)
+    )
+  }
   return (
     <div className="app">
-      <Header />
+      <Header cartItemCount={getTotalItems} onCartClick={toggleCart} />
       <div className="main-content">
-        <ProductList products = {products}/>
-        
+        <ProductList products={products} onAddToCart={addToCart} />
       </div>
+      <CartSideBar
+
+        isOpen={isCartOpen}
+        onClose={toggleCart}
+        cart={cart}
+        onUpdateQuantity={updateQuantity}
+        onRemoveItem={removeFromCart}
+      />
     </div>
   )
 }
