@@ -68,10 +68,33 @@
 }
 
 .product-category{
-    font-size: 0.85rem;
+    font-size: 0.80rem;
     color: white;
-    background-color: rgb(1, 1, 102);
+    background-color: rgb(60, 60, 120);
     padding: 5px 12px;
     border-radius: 20px;
 
+}
+
+.add-to-cart-btn{
+    width: 100%;
+    margin-top: 15px ;
+    padding: 12px;
+    background-color:  rgb(1, 1, 102);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 400;
+    transition: 0.2s;
+}
+
+.add-to-cart-btn:hover{
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.add-to-cart-btn:active {
+  transform: scale(0.98);
 }

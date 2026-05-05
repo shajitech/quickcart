@@ -2,16 +2,13 @@ import { products } from "../data/products";
 import ProductCard from "./ProductCard";
 import '../styles/ProductList.css'
 
-function ProductList({ products }) {
-
+function ProductList({ products, onAddToCart }) {
+    // console.log(typeof onAddToCart)
     const cards = products.map((product) => (
         <ProductCard
             key = {product.id}
-            name={product.name}
-            description={product.description}
-            image={product.image}
-            price={product.price}
-            category={product.category}
+            product = {product}
+            onAddToCart = {onAddToCart}
         />
     ))
     return (
